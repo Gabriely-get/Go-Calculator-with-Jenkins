@@ -1,0 +1,6 @@
+echo "6/0= $(curl -s http://127.0.0.1:8000/calc/div/6/0)"
+echo "6/6= $(curl -s http://127.0.0.1:8000/calc/div/6/6)"
+echo "6*6= $(curl -s http://127.0.0.1:8000/calc/mult/6/6)"
+echo "6-6= $(curl -s http://127.0.0.1:8000/calc/sub/6/6)"
+echo "6+6= $(curl -s http://127.0.0.1:8000/calc/sum/6/6)"
+echo "history= $(curl -s http://localhost:8000/calc/history)"
