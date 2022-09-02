@@ -1,0 +1,15 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Packer Build Image') {
+            steps {
+                sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer init ./BAKE/build_calculator.pkr.hcl'
+                sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer validate ./BAKE/build_calculator.pkr.hcl'
+                sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer build ./BAKE/build_calculator.pkr.hcl'
+            }
+        }
+    }
+}
