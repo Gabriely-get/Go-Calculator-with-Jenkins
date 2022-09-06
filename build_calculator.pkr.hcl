@@ -24,13 +24,11 @@ source "docker" "go" {
 }
 
 build {
-  name = "go-calculator"
-
   sources = ["source.docker.go"]
 
   provisioner "file" {
-    source      = "./src"
     destination = "/calculator"
+    source      = "./src"
   }
 
   post-processors {
