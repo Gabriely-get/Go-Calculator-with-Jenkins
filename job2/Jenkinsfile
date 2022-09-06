@@ -1,13 +1,17 @@
 pipeline {
+    environment { 
+        DOCKERHUB_REPOSITORY = credentials('Repository_Name')
+    }
+
     agent any
 
     stages {
         stage('Docker Pull Calculator Image') {
             steps {
                 sh '''#!/bin/bash
-                    if [ "$(docker images -q gabsss/go-calculator:latest)" == "" ];
+                    if [ "$(docker images -q $DOCKERHUB_REPOSITORY:latest)" == "" ];
                     then 
-                        docker pull gabsss/go-calculator:latest
+                        docker pull $DOCKERHUB_REPOSITORY:latest
                     fi
                 '''
             }
@@ -19,7 +23,7 @@ pipeline {
                      if ["$(docker ps -q -f name=go_calculator)" == ""];
                     then
                         docker rm -f go_calculator
-                        docker run --name=go_calculator --network=host -p 8000:8000 gabsss/go-calculator:latest
+                        docker run --name=go_calculator --network=host -p 8000:8000 $DOCKERHUB_REPOSITORY:latest
                     fi
                  '''
             }
