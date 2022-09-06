@@ -35,7 +35,7 @@ build {
 
   post-processors {
     post-processor "docker-tag" {
-      repository = "${var.REPOSITORY}"
+      repository = "gabsss/go-calculator"
       tags       = ["latest"]
     }
 
