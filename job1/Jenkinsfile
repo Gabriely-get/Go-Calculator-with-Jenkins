@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-        REPOSITORY = credentials('Reposiory Name')
+        REPOSITORY = credentials('Repository_Name')
         DOCKERHUB_CREDENTIALS = credentials('dockerHUB')
     }
 
