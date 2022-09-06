@@ -24,23 +24,25 @@ source "docker" "go" {
 }
 
 build {
+  name = "go-calculator"
+
   sources = ["source.docker.go"]
 
   provisioner "file" {
-    destination = "/calculator"
     source      = "./src"
+    destination = "/calculator"
   }
 
   post-processors {
     post-processor "docker-tag" {
-      repository = "gabsss/go-calculator"
+      repository = "${var.REPOSITORY}"
       tags       = ["latest"]
     }
 
     post-processor "docker-push" {
       login          = true
-      login_username = "gabsss"
-      login_password = "Caminhoilegra21!"
+      login_username = "${var.USERNAME}"
+      login_password = "${var.PASSWORD}"
     }
 
   }
