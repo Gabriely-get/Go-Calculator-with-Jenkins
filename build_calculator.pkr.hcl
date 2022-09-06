@@ -39,7 +39,7 @@ build {
 
     post-processor "docker-push" {
       login          = true
-      login_username = "gabriely.santos@ilegra.com"
+      login_username = "gabsss"
       login_password = "Caminhoilegra21!"
     }
 
