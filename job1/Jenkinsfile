@@ -1,9 +1,4 @@
 pipeline {
-    environment { 
-        DOCKERHUB_REPOSITORY = credentials('Repository_Name')
-        DOCKERHUB_CREDENTIALS = credentials('dockerHUB')
-    }
-
     agent any
 
     stages {
