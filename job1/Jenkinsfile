@@ -1,4 +1,9 @@
 pipeline {
+    environment { 
+        DOCKERHUB_REPOSITORY = credentials('Repository_Name')
+        DOCKERHUB_CREDENTIALS = credentials('dockerHUB')
+    }
+
     agent any
 
     stages {
@@ -6,7 +11,7 @@ pipeline {
             steps {
                 sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer init ./build_calculator.pkr.hcl'
                 sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer validate ./build_calculator.pkr.hcl'
-                sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer build ./build_calculator.pkr.hcl'
+                sh '/var/jenkins_home/tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/Packer_Go-Calculator_linux_amd64/packer build -var "REPOSITORY=$DOCKERHUB_REPOSITORY" -var "USERNAME=$DOCKERHUB_CREDENTIALS_USR" -var "PASSWORD=$DOCKERHUB_CREDENTIALS_PSW" ./build_calculator.pkr.hcl'
             }
         }
     }
