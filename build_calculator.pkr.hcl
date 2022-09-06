@@ -33,15 +33,18 @@ build {
     destination = "/calculator"
   }
 
-  post-processor "docker-tag" {
-    repository = "${var.REPOSITORY}"
-    tags       = ["latest"]
-  }
+  post-processors {
+    post-processor "docker-tag" {
+      repository = "${var.REPOSITORY}"
+      tags       = ["latest"]
+    }
 
-  post-processor "docker-push" {
-    login          = true
-    login_username = "${var.USERNAME}"
-    login_password = "${var.PASSWORD}"
+    post-processor "docker-push" {
+      login          = true
+      login_username = "${var.USERNAME}"
+      login_password = "${var.PASSWORD}"
+    }
+
   }
 
 }
