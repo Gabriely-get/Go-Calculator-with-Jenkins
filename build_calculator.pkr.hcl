@@ -33,8 +33,7 @@ build {
     destination = "/calculator"
   }
 
-  post-processors {
-    post-processor "docker-tag" {
+  post-processor "docker-tag" {
     repository = "${var.REPOSITORY}"
     tags       = ["latest"]
   }
