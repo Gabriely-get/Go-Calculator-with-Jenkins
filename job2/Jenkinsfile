@@ -6,7 +6,9 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     if [ "$(docker images -q gabsss/go-calculator:latest)" == "" ];
-                    then docker pull gabsss/go-calculator:latest
+                    then 
+                        docker pull gabsss/go-calculator:latest
+                    fi
                 '''
             }
         }
@@ -18,6 +20,7 @@ pipeline {
                     then
                         docker rm -f go_calculator
                         docker run --name=go_calculator --network=host -p 8000:8000 gabsss/go-calculator:latest
+                    fi
                  '''
             }
         }
