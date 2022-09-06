@@ -10,13 +10,15 @@ pipeline {
 
         stage('Docker Run Calculator Image') {
             steps {
-                sh ' if ["$(sudo docker ps -q -f name=go-calculator)" == ""];
+                sh '''#!/bin/bash
+                     if ["$(sudo docker ps -q -f name=go-calculator)" == ""];
                     then
                         docker run --name=go_calculator --network=host -p 8000:8000 gabsss/go-calculator:latest
                     else
                         docker rm -f go_calculator
                         docker run --name=go_calculator --network=host -p 8000:8000 gabsss/go-calculator:latest
-                    fi '
+                    fi
+                 '''
             }
         }
     }
