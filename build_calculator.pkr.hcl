@@ -1,3 +1,9 @@
+variables {
+  REPOSITORY = ""
+  USERNAME   = ""
+  PASSWORD   = ""
+}
+
 packer {
   required_plugins {
     docker = {
@@ -29,9 +35,14 @@ build {
 
   post-processors {
     post-processor "docker-tag" {
-      repository = "gabrielys/go-calculator"
-      tags       = ["latest"]
-    }
+    repository = "${var.REPOSITORY}"
+    tags       = ["latest"]
+  }
+
+  post-processor "docker-push" {
+    login          = true
+    login_username = "${var.USERNAME}"
+    login_password = "${var.PASSWORD}"
   }
 
 }
